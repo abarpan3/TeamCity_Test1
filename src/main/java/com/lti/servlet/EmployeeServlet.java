@@ -36,7 +36,7 @@ public class EmployeeServlet extends HttpServlet {
 			rd.forward(request, response);
 		}
 		else {
-			System.out.println("Employee is not added.");
+			System.out.println("Employee could not be added.");
 		}
 	}
 
