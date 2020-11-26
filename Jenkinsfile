@@ -1,9 +1,13 @@
 pipeline {
     
-    docker {
+    agent{
+      
+      docker {
       label 'windows'
       image 'mcr.microsoft.com/powershell'
+        }
     }
+    
     
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
