@@ -3,7 +3,7 @@ pipeline {
     agent{
       
       docker {
-      label 'winagent'
+ 
       image 'mcr.microsoft.com/powershell'
         }
     }
