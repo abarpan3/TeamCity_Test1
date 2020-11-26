@@ -1,8 +1,10 @@
 pipeline {
-    agent{
-        docker { image 'alpine:latest' }
+    
+    docker {
+      label 'windows'
+      image 'mcr.microsoft.com/powershell'
     }
-
+    
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "Maven"
@@ -15,10 +17,10 @@ pipeline {
                 git 'https://github.com/abarpan3/TeamCity_Test1.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn clean package"
+                //sh "mvn clean package"
 
                 // To run Maven on a Windows agent, use
-                // bat "mvn clean package"
+                bat "mvn clean package"
             }
 
             post {
