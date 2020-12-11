@@ -9,6 +9,9 @@ pipeline{
     
     stages{   
         stage("Build"){
+            environment {
+                  HOME="."
+                }
             steps{
                 bat "mvn -v"
             }
