@@ -2,17 +2,17 @@ pipeline{
     
     agent {
         docker{
-            image "maven:3.6.3-jdk-8-slim"
+            
+            label 'windows'
+            image 'mcr.microsoft.com/powershell'
           
         }
     }
     
     stages{   
         stage("Build"){
-            environment {
-                  HOME="."
-                }
             steps{
+                bat "docker pull maven:3.6.3-jdk-8-slim
                 bat "mvn -v"
             }
         }
