@@ -8,17 +8,17 @@ pipeline{
     }
     
     stages{   
-        stage('Build'){
+        stage("Build"){
             steps{
                 bat "mvn clean package"
             }
         }
         
-        stage('Build Docker Image'){
+        stage("Build Docker Image"){
             bat "docker build -t abarpan3/myapp:1.0.0 ."
         }
         
-        stage('Push Docker Image'){
+        stage("Push Docker Image"){
         
             withCredentials([string(credentialsId: 'docker-pass', variable: 'dockerpwd')]) {
         
