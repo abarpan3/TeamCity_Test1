@@ -22,7 +22,7 @@ node {
     
     stage('Push Docker Image'){
         
-    withCredentials([string(credentialsId: 'docker-pass', variable: 'dockerpwd')]) {
+    withCredentials([string(credentialsId: 'Docker_PWD', variable: 'docker_pwd')]) {
         
         bat "docker login -u abarpan3 -p ${dockerpwd}"
     }
