@@ -22,9 +22,9 @@ node {
     
     stage('Push Docker Image'){
         
-    withCredentials([string(credentialsId: 'docker-pass', variable: 'dockerpwd')]) {
+    withCredentials([string(credentialsId: 'Docker_PWD', variable: 'docker_pwd')]) {
         
-        sh "docker login -u abarpan3 -p ${dockerpwd}"
+        sh "docker login -u abarpan3 -p ${docker_pwd}"
     }
         sh "docker push abarpan3/myapp:1.0.0"
         
