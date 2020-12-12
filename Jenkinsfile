@@ -1,28 +1,48 @@
-node {
+pipeline {
     
-    def mvnHome
-    stage('Preparation') { // for display purposes
+    agent{
+        docker{
+
+            image "maven:3.6.3-jdk-8-slim"
+
+        }
+    }
+
+    stages{
+
+        stage('Preparation') { // for display purposes
         // Get some code from a GitHub repository
-        git 'https://github.com/abarpan3/TeamCity_Test1'
-        // Get the Maven tool.
-        // ** NOTE: This 'M3' Maven tool must be configured
-        // **       in the global configuration.
-        // mvnHome = tool 'Maven'
+        steps{
+            
+            git 'https://github.com/abarpan3/TeamCity_Test1'
+        }
+ 
+      
     }
     stage('Build') {
         // Run the maven build
-        sh "mvn clean package"
+        steps{
+            sh "mvn clean package"
+        }
+        
     }
     
     stage('Build Docker Image'){
         
-        sh "docker build -t abarpan3/myapp:1.0.0 ."
+        steps{
+
+            sh "docker build -t abarpan3/myapp:1.0.0 ."
+        }
+        
+        
         
     }
     
     stage('Push Docker Image'){
-        
-    withCredentials([string(credentialsId: 'Docker_PWD', variable: 'docker_pwd')]) {
+
+        steps{
+
+               withCredentials([string(credentialsId: 'Docker_PWD', variable: 'docker_pwd')]) {
         
         sh "docker login -u abarpan3 -p ${docker_pwd}"
     }
@@ -31,6 +51,8 @@ node {
     }
       
   
+        }
+        
 
-    
+    }
 }
