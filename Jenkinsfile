@@ -24,7 +24,7 @@ node {
         
     withCredentials([string(credentialsId: 'Docker_PWD', variable: 'docker_pwd')]) {
         
-        bat "docker login -u abarpan3 -p ${dockerpwd}"
+        bat "docker login -u abarpan3 -p ${docker_pwd}"
     }
         bat "docker push abarpan3/myapp:1.0.0"
         
